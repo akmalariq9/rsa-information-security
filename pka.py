@@ -51,4 +51,6 @@ class PublicKeyAuthority:
             return self.registered_keys[client_id]['public']
         print(f"[PKA] No public key found for client '{client_id}'")
         return None
+
+# Create a shared singleton instance of PKA
 pka = PublicKeyAuthority()
