@@ -87,9 +87,10 @@ def bob():
                 plain_text = plain_text[:-padding_len]
             print(f"Decrypted plain text from Alice: {plain_text}")
             
+            
+            plain_text = input("Masukkan Plaintext (atau ketik 'exit' untuk keluar): ")
             kirim_key_bob = encrypt_rsa(key_des, e_alice, n_alice)
             client_socket.send(str(kirim_key_bob).encode())
-            plain_text = input("Masukkan Plaintext (atau ketik 'exit' untuk keluar): ")
             if plain_text != "exit":
                 print("Plaintext: " + plain_text)
                 print("Key: " + key_des)
@@ -113,14 +114,12 @@ def bob():
                 original_ct = bin2hex(ct) + added_char
                 print("Cipher Text For Alice : ", original_ct)
                 client_socket.send(original_ct.encode())
-            client_socket.close()
 
         else:
             print("[Bob] Nb is invalid")
             client_socket.close()
             break
 
-    client_socket.close()
 
 if __name__ == "__main__":
     bob()
